@@ -6,9 +6,9 @@ This project is a demonstration of the Factory Software Pattern implemented usin
 C++20 Modules: Utilizes modular programming with the LOGGER.ixx and LOGGER.cpp files to manage logging functionality.
 C++17 Variadic Templates: Implements factory classes using variadic templates and specialization to handle different product types and parameters.
 Advanced Metaprogramming: Demonstrates advanced metaprogramming techniques to make product creation dynamic and generic.
-## Structure
+# Structure
 ## Core Components
-1. ´ProductWithID.h´: Base class for products that have an ID.
+1. 'ProductWithID.h': Base class for products that have an ID.
 2. 'ConcreteProductA.h': Derived class implementing a concrete product A with ID handling.
 3. 'ConcreteProductB.h': Derived class implementing a concrete product B with ID handling.
 4. 'TempProduct.h': A placeholder product used in the factory.
