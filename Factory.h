@@ -16,6 +16,7 @@ import LOGGER;
 
 // General Factory template
 // This template handles creation of products with default parameters
+// This is the base class which can be inherited in the future if it's needed
 template<typename... Args>
 class Factory {
 public:
@@ -30,6 +31,7 @@ public:
 };
 // Specialization for cases with int and std::string
 // This specialization is used when creating ConcreteProductA
+// This is the base case for recursion purposes as well
 template<>
 class Factory<int, std::string> {
 public:
@@ -43,6 +45,7 @@ public:
 };
 // Specialization for cases with int and other types (T)
 // This specialization is used when creating ConcreteProductB
+// This class can inherit the base class if it is needed as program expands
 template<typename T>
 class Factory<int, T> {
 public:
