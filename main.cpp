@@ -81,7 +81,7 @@ int main() {
     ThreadPool poolProcess(numThreads); // Create a thread pool for processing products
     ThreadPool poolExtraction(numThreads); // Create a thread pool for extracting IDs
     // Prepare a list of products
-        // Prepare a list of products using the factory
+    // Prepare a list of products using the factory
     Factory<int, std::string> factoryA;
     Factory<int, int> factoryB;
     Factory<> factoryTemp;
