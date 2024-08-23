@@ -23,7 +23,7 @@ public:
     // General method to create a product; for cases with no specific type parameters
     std::tuple<ProductVariant, Args...> creatProduct(Args... args) const {
         static std::atomic<int> NoIDcounter{ 0 };
-        INFO("Creating NO ID PRODUCT\n");
+        INFO("Creating NO ID TEMP PRODUCT\n");
         NoIDcounter.fetch_add(1, std::memory_order_relaxed);
         ProductVariant product = TempProduct();
         return std::make_tuple(std::move(product), args...);
