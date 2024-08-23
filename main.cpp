@@ -5,6 +5,7 @@
 #include "TempProduct.h"
 #include "ProductTypes.h" 
 #include "ThreadPool.h"
+#include "Factory.h"
 #include <vector>
 #include <tuple>
 #include <memory>
@@ -80,14 +81,33 @@ int main() {
     ThreadPool poolProcess(numThreads); // Create a thread pool for processing products
     ThreadPool poolExtraction(numThreads); // Create a thread pool for extracting IDs
     // Prepare a list of products
+        // Prepare a list of products using the factory
+    Factory<int, std::string> factoryA;
+    Factory<int, int> factoryB;
+    Factory<> factoryTemp;
+
     std::vector<ProductVariant> products;
-    products.push_back(ConcreteProductA(1));
-    products.push_back(ConcreteProductB(2));
-    products.push_back(TempProduct());
-    products.push_back(ConcreteProductA(3));
-    products.push_back(ConcreteProductB(4));
+
+    // Create products using the factory
+    auto [productA1, index1, name1] = factoryA.creatProduct(1, 0, "ProductA1");
+    auto [productB1, id1, other1] = factoryB.creatProduct(2, 42);
+    auto [tempProduct] = factoryTemp.creatProduct();
+
+    // Add products to the vector
+    products.push_back(std::move(productA1));
+    products.push_back(std::move(productB1));
+    products.push_back(std::move(tempProduct));
+
+    // Add more products if needed
+    auto [productA2, index2, name2] = factoryA.creatProduct(3, 1, "ProductA2");
+    auto [productB2, id2, other2] = factoryB.creatProduct(4, 84);
+
+    products.push_back(std::move(productA2));
+    products.push_back(std::move(productB2));
+
     // Process products
     processProducts(poolProcess, products);
+
     // Extract IDs from all products
     std::vector<int> allIds;
     extractProductIDs(poolExtraction, products, allIds);
@@ -97,5 +117,6 @@ int main() {
     for (int id : allIds) {
         cout << id << endl; // Output each ID to the console
     }
+
     return 0;
 }
